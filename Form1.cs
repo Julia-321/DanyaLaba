@@ -91,7 +91,7 @@ namespace WindowsFormsApp1
 
             conn_for_db.Close();
         }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'azart_companyDataSet.Game' table. You can move, or remove it, as needed.
@@ -112,95 +112,87 @@ namespace WindowsFormsApp1
 
         }
 
-        private void execQuery_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
             if (radioButton1.Checked)// Search 
             {
                 if (checkBox1.Checked && (checkBox2.Checked == false))
                 {
-                    bool test = true;
-                    test = spell_for_CHECK_ID(test);
-                    if (test)
+                    if (spell_for_check_id_is_element_int()) 
                     {
-                        spell_for_mysql_search($"select game_id, game_name,game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)}");
-                        //пошук за ID работает
+                        spell_for_mysql_search($"select  FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)}");
                     }
-                    else if (checkBox1.Checked == false && checkBox2.Checked && comboBox1.Text != "")
-                    {
-                        spell_for_mysql_search($"select game_id, game_name, game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME_TYPE.game_type_name = '{comboBox1.Text}';");
-                        //пошук за типом гри
-                    }
-                    else if (checkBox1.Checked && checkBox2.Checked && comboBox1.Text != "")
-                    {
-                        spell_for_mysql_search($"select game_id, game_name, game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)} AND GAME_TYPE.game_type_name = '{comboBox1.Text}';");
-                        //пошук за ID та Типом 
-                    }
-                    else if (checkBox1.Checked == false && checkBox2.Checked == false)
-                    {
-                        spell_for_mysql_search($"SELECT game_id, game_name, game_description, game_type_name, game_type_description FROM GAME INNER JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id;");
-                        //пошук без id без Type
-                    }
+                    //пошук за ID работает
                 }
+                else if (checkBox1.Checked == false && checkBox2.Checked && comboBox1.Text != "")
+                {
+                    spell_for_mysql_search($"select game_id, game_name, game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME_TYPE.game_type_name = '{comboBox1.Text}';");
+                    //пошук за типом гри
+                }
+                else if (checkBox1.Checked && checkBox2.Checked && comboBox1.Text != "")
+                {
+                    spell_for_mysql_search($"select game_id, game_name, game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)} AND GAME_TYPE.game_type_name = '{comboBox1.Text}';");
+                    //пошук за ID та Типом 
+                }
+                else if (checkBox1.Checked == false && checkBox2.Checked == false) 
+                {
+                    spell_for_mysql_search($"SELECT game_id, game_name, game_description, game_type_name, game_type_description FROM GAME INNER JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id;");
+                    //пошук без id без Type
+                }
+            }
 
-                if (radioButton2.Checked) //Insert 
+            if (radioButton2.Checked) //Insert 
+            {
+                if (spell_for_CHECK_ID()) 
                 {
-                    bool test = true;
-                    test = spell_for_CHECK_ID(test);
-                    if (test == true)
-                    {
-                        spell_for_mysql_Insert(comboBox1.Text);
-                    }
+                  spell_for_mysql_Insert(comboBox1.Text);
                 }
-                /*
-                            if (radioButton3.Checked) //Update            
-                            {
-                                if (checkBox1.Checked && (checkBox2.Checked == false))
-                                {
-                                    spell_for_mysql($"update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text} where game_id = {game_IDTextBox.Text}");
-                                    display_data();
-                                }
-                                else if (checkBox1.Checked == false && checkBox2.Checked)
-                                {
-                                    spell_for_mysql($"update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text} where game_type = {type_IDTextBox.Text}");
-                                    display_data();
-                                    //update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text} where game_type = {game_IDTextBox.Text}";
-                                }
-                                else if (checkBox1.Checked && checkBox2.Checked)
-                                {
-                                    spell_for_mysql($"update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text}  where (( game_type = {type_IDTextBox.Text} ) AND (game_id = {game_IDTextBox.Text}))");
-                                    display_data();
-                                }
-                            }
-                          */
-                if (radioButton4.Checked) //Delete
-                {
-                    if (checkBox1.Checked && (checkBox2.Checked == false))
-                    {
-                        bool test = true;
-                        test = spell_for_CHECK_ID(test);
-                        if (test == true)
+            }
+            /*
+                        if (radioButton3.Checked) //Update            
                         {
-                            spell_for_mysql($"delete from GAME where game_id = {game_IDTextBox.Text};");
-                            display_data();
+                            if (checkBox1.Checked && (checkBox2.Checked == false))
+                            {
+                                spell_for_mysql($"update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text} where game_id = {game_IDTextBox.Text}");
+                                display_data();
+                            }
+                            else if (checkBox1.Checked == false && checkBox2.Checked)
+                            {
+                                spell_for_mysql($"update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text} where game_type = {type_IDTextBox.Text}");
+                                display_data();
+                                //update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text} where game_type = {game_IDTextBox.Text}";
+                            }
+                            else if (checkBox1.Checked && checkBox2.Checked)
+                            {
+                                spell_for_mysql($"update GAME set game_id = {game_IDTextBox.Text}, game_name = '{nameTextBox.Text}', game_description = '{descriptionTextBox.Text}', game_type = {type_IDTextBox.Text}  where (( game_type = {type_IDTextBox.Text} ) AND (game_id = {game_IDTextBox.Text}))");
+                                display_data();
+                            }
                         }
-                    }
-                    else if (checkBox1.Checked == false && checkBox2.Checked)
+                      */
+            if (radioButton4.Checked) //Delete
+            {
+                if (checkBox1.Checked && (!checkBox2.Checked))
+                {
+                    if (spell_for_CHECK_ID())
                     {
-                        spell_for_mysql($"delete from GAME where game_type = {comboBox1.Text};");
+                        spell_for_mysql($"delete from GAME where game_id = {game_IDTextBox.Text};");
                         display_data();
                     }
-                    else if (checkBox1.Checked && checkBox2.Checked)
+                }
+                else if (!checkBox1.Checked && checkBox2.Checked && comboBox1.Text != "")
+                {
+                    spell_for_mysql($"delete from GAME where game_type = {comboBox1.Text};");
+                    display_data();
+                }
+                else if (checkBox1.Checked && checkBox2.Checked)
+                {
+                    if (spell_for_CHECK_ID())
                     {
-                        bool test = true;
-                        test = spell_for_CHECK_ID(test);
-                        if (test == true)
-                        {
-                            spell_for_mysql($"delete from GAME where (game_id = {game_IDTextBox.Text}) AND (game_type = {comboBox1.Text});");
-                            display_data();
-                        }
-
+                        spell_for_mysql($"delete from GAME where (game_id = {game_IDTextBox.Text}) AND (game_type = {comboBox1.Text});");
+                        display_data();
                     }
+                       
                 }
             }
         }
@@ -252,7 +244,10 @@ namespace WindowsFormsApp1
             }
             spell_for_mysql($"Insert INTO GAME (game_id, game_name, game_description, game_type_ID) VALUES ({Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', {check_game_type_id});");
         }
-        private bool spell_for_check_id_is_element_int(bool test)
+        //==============================================================================================
+        //Отсеивание ошибок при вводе инфы в текстовые поля
+        //==============================================================================================
+        private bool spell_for_check_id_is_element_int()
         {
             int check_something_in_game_IDTextBox = 0;
             bool success = false;
@@ -260,61 +255,91 @@ namespace WindowsFormsApp1
             if (!success)
             {
                 errorProvider1.SetError(game_IDTextBox, "game_id должно быть целым числом");
-                test = false;
+                success = false;
             }
             else
             {
                 errorProvider1.Clear();
-                test = true;
+                success = true;
             }
-            return test;
+            return success;
         }
-        private bool spell_for_check_is_not_null(bool test)
+        private bool spell_for_check_is_not_null()
         {
-            if (game_IDTextBox.Text == "")
+            bool test = true;
+            if (radioButton1.Checked)//search
             {
-                errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
-                test = false;
+                if (checkBox1.Checked && !checkBox2.Checked) 
+                {
+                    if (game_IDTextBox.Text == "")
+                    {
+                        errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
+                        test = false;
+                    }
+                    else
+                    {
+                        errorProvider1.Clear();
+                        test = true;
+                    }
+                }
+                else if (!checkBox1.Checked && checkBox2.Checked)
+                {
+                    if (comboBox1.Text == "")
+                    {
+                        errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
+                        test = false;
+                    }
+                    else
+                    {
+                        errorProvider1.Clear();
+                        test = true;
+                    }
+                }
             }
-            else
-            {
-                errorProvider1.Clear();
-                test = true;
-            }
+            else if (radioButton2.Checked)
+            { }
+            else if (radioButton3.Checked)
+            { }
+            else if (radioButton4.Checked) 
+            { }
             
-            if (nameTextBox.Text == "") 
+            else 
             {
-                errorProvider2.SetError(nameTextBox, "game_name не может быть пустым полем");
-                test = false;
-            }
-            else
-            {
-                errorProvider2.Clear();
-                test = true;
-            }
+                
 
-            if (descriptionTextBox.Text == "") 
-            {
-                errorProvider3.SetError(descriptionTextBox, "game_description не может быть пустым полем");
-                test = false;
+                if (nameTextBox.Text == "")
+                {
+                    errorProvider2.SetError(nameTextBox, "game_name не может быть пустым полем");
+                    test = false;
+                }
+                else
+                {
+                    errorProvider2.Clear();
+                    test = true;
+                }
+
+                if (descriptionTextBox.Text == "")
+                {
+                    errorProvider3.SetError(descriptionTextBox, "game_description не может быть пустым полем");
+                    test = false;
+                }
+                else
+                {
+                    errorProvider3.Clear();
+                    test = true;
+                }
+
+                if (comboBox1.Text == "")
+                {
+                    errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
+                    test = false;
+                }
             }
-            else
-            {
-                errorProvider3.Clear();
-                test = true;
-            }
-            
-            if (comboBox1.Text == "") 
-            {
-                errorProvider1.SetError(comboBox1, "game_description не может быть пустым полем");
-                test = false;
-            }
-           
-           
             return test;
-        }//проверка не пустой ли Textbox для ID
-        private bool spell_for_check_id_is_element_presence(bool test)
+        }//проверка не пустой ли Textbox
+        private bool spell_for_check_id_is_element_presence()
         {
+            bool test = true;
             conn_for_db.Open();
             MySqlCommand cmd = conn_for_db.CreateCommand();
             cmd.CommandType = CommandType.Text;
@@ -339,7 +364,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-            if (test == false)
+            if (!test)
             {
                 errorProvider1.SetError(game_IDTextBox, "нарушение Primary key, введи пожалуйста game_id, который ты не видешь в списке");
             }
@@ -349,17 +374,49 @@ namespace WindowsFormsApp1
             }
             return test;
         }//проверка на наличие введеного ID в Texbox для ID
-        private bool spell_for_CHECK_ID(bool test) //дикий костыль с всеми проверками;
+
+        private bool spell_for_CHECK_ID() //дикий костыль с всеми проверками;
         {
-            test = spell_for_check_is_not_null(test);
-
-            if (test == true)
+            bool test = true;
+            if (radioButton1.Checked)
             {
-                test = spell_for_check_id_is_element_int(test);
-
-                if (test == true)
+                if (checkBox1.Checked && !checkBox2.Checked)
                 {
-                    test = spell_for_check_id_is_element_presence(test);
+                    if (spell_for_check_is_not_null()) 
+                    {
+                        if (spell_for_check_id_is_element_int())
+                        {
+                            spell_for_mysql_search($"select  FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)}");
+                        }
+                    }
+                    
+                    //пошук за ID работает
+                }
+            }
+            else if (radioButton2.Checked)
+            {
+
+            }
+            else if (radioButton3.Checked)
+            {
+
+            }
+            else if (radioButton4.Checked) 
+            {
+            
+            }
+            if (spell_for_check_is_not_null())
+            { 
+                if (spell_for_check_id_is_element_int())
+                {
+                    if (spell_for_check_id_is_element_presence())
+                    {
+                        test = true;
+                    }
+                    else 
+                    {
+                        test = false;
+                    }
                 }
                 else 
                 {
