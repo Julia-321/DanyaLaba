@@ -137,7 +137,7 @@ namespace WindowsFormsApp1
                 }
                 else if (checkBox1.Checked == false && checkBox2.Checked == false) 
                 {
-                    spell_for_mysql_search($"SELECT game_id, game_name, game_description, game_type_name, game_type_description FROM GAME INNER JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id;");
+                    spell_for_mysql_search($"SELECT game_id, game_name, game_description, game_type_id, game_type_name, game_type_description FROM GAME INNER JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id;");
                     //пошук без id без Type
                 }
             }
