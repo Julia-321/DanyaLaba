@@ -40,7 +40,8 @@ namespace WindowsFormsApp1
         //static string DB = "host=62.149.24.91;Initial Catalog = maindb;User Id = dbadmin;Password=superadmin;CharSet=UTF8;Connect Timeout = 100";
         //"Server=localhost;Database=database;Uid=username;Pwd=password;"
 
-        static string DB = "server=62.149.24.91;database=maindb;Uid=nopass;";
+        //static string DB = "server=62.149.24.91;database=maindb;Uid=nopass;";
+        static string DB = "server=cronus.net.ua;database=maindb;Uid=xergofian;pwd=2112";
 
         //==============================================================================================================================================
 
