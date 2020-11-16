@@ -65,7 +65,7 @@
             // radioSelect
             // 
             this.radioSelect.AutoSize = true;
-            this.radioSelect.Location = new System.Drawing.Point(21, 268);
+            this.radioSelect.Location = new System.Drawing.Point(34, 314);
             this.radioSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioSelect.Name = "radioSelect";
             this.radioSelect.Size = new System.Drawing.Size(83, 24);
@@ -78,7 +78,7 @@
             // radioInsert
             // 
             this.radioInsert.AutoSize = true;
-            this.radioInsert.Location = new System.Drawing.Point(21, 305);
+            this.radioInsert.Location = new System.Drawing.Point(34, 351);
             this.radioInsert.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioInsert.Name = "radioInsert";
             this.radioInsert.Size = new System.Drawing.Size(120, 24);
@@ -91,7 +91,7 @@
             // radioUpdate
             // 
             this.radioUpdate.AutoSize = true;
-            this.radioUpdate.Location = new System.Drawing.Point(21, 341);
+            this.radioUpdate.Location = new System.Drawing.Point(34, 387);
             this.radioUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioUpdate.Name = "radioUpdate";
             this.radioUpdate.Size = new System.Drawing.Size(132, 24);
@@ -104,7 +104,7 @@
             // radioDelete
             // 
             this.radioDelete.AutoSize = true;
-            this.radioDelete.Location = new System.Drawing.Point(21, 378);
+            this.radioDelete.Location = new System.Drawing.Point(34, 424);
             this.radioDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioDelete.Name = "radioDelete";
             this.radioDelete.Size = new System.Drawing.Size(120, 24);
@@ -117,7 +117,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(294, 326);
+            this.checkBox1.Location = new System.Drawing.Point(307, 372);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 24);
@@ -128,7 +128,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(463, 326);
+            this.checkBox2.Location = new System.Drawing.Point(476, 372);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(135, 24);
@@ -138,7 +138,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(25, 522);
+            this.button1.Location = new System.Drawing.Point(25, 544);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(207, 35);
@@ -149,7 +149,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(867, 320);
+            this.button2.Location = new System.Drawing.Point(846, 387);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(207, 35);
@@ -171,7 +171,7 @@
             // 
             // game_IDTextBox
             // 
-            this.game_IDTextBox.Location = new System.Drawing.Point(21, 456);
+            this.game_IDTextBox.Location = new System.Drawing.Point(28, 498);
             this.game_IDTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.game_IDTextBox.Name = "game_IDTextBox";
             this.game_IDTextBox.Size = new System.Drawing.Size(150, 26);
@@ -180,7 +180,7 @@
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(181, 456);
+            this.nameTextBox.Location = new System.Drawing.Point(188, 498);
             this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(148, 26);
@@ -188,7 +188,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(340, 456);
+            this.descriptionTextBox.Location = new System.Drawing.Point(347, 498);
             this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(148, 26);
@@ -198,7 +198,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 424);
+            this.label1.Location = new System.Drawing.Point(28, 466);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 20);
@@ -209,7 +209,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(178, 424);
+            this.label2.Location = new System.Drawing.Point(185, 466);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 20);
@@ -220,7 +220,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(335, 424);
+            this.label3.Location = new System.Drawing.Point(342, 466);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 20);
@@ -232,7 +232,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.ItemHeight = 20;
-            this.comboBox1.Location = new System.Drawing.Point(498, 456);
+            this.comboBox1.Location = new System.Drawing.Point(505, 498);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(165, 28);
@@ -242,7 +242,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(494, 424);
+            this.label5.Location = new System.Drawing.Point(501, 466);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 20);
@@ -252,7 +252,7 @@
             // 
             // test_button
             // 
-            this.test_button.Location = new System.Drawing.Point(250, 522);
+            this.test_button.Location = new System.Drawing.Point(259, 544);
             this.test_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.test_button.Name = "test_button";
             this.test_button.Size = new System.Drawing.Size(220, 35);

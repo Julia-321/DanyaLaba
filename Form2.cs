@@ -35,25 +35,25 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked) 
+            if (radioSelect.Checked) 
             {
                 spell_for_mysql_search("Select * from GAME_TYPE;");
             }
-            else if (radioButton2.Checked)
+            else if (radioInsert.Checked)
             {
                 if (spell_for_check_is_not_null() && spell_for_check_id_is_element_int() && spell_for_check_id_is_element_presence())
                 {
                     spell_for_mysql($"Insert into GAME_TYPE game_type_id, game_type_name, game_type_description VALUES ({game_type_id_textbox.Text}, {game_type_name_textbox.Text}, {game_type_description_textbox.Text})");       
                 }
             }
-            else if (radioButton3.Checked)
+            else if (radioUpdate.Checked)
             {
                 if (spell_for_check_is_not_null() && spell_for_check_id_is_element_int()) 
                 {
-                    spell_for_mysql($"Update")
+                    spell_for_mysql($"Update");
                 }
             }
-            else if (radioButton4.Checked)
+            else if (radioDelete.Checked)
             {
 
             }
@@ -66,7 +66,7 @@ namespace WindowsFormsApp1
             errorProvider2.Clear();
             errorProvider3.Clear();
 
-            if (radioButton1.Checked)
+            if (radioSelect.Checked)
             {
 
                 if (game_type_id_textbox.Text == "")
@@ -75,7 +75,7 @@ namespace WindowsFormsApp1
                     test = false;
                 }
             }
-            else if (radioButton3.Checked)
+            else if (radioUpdate.Checked)
             {
                 if (game_type_id_textbox.Text == "")
                 {
