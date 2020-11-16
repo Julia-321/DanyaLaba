@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioSelect = new System.Windows.Forms.RadioButton();
+            this.radioInsert = new System.Windows.Forms.RadioButton();
+            this.radioUpdate = new System.Windows.Forms.RadioButton();
+            this.radioDelete = new System.Windows.Forms.RadioButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -59,57 +59,57 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // radioSelect
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(19, 21);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(83, 24);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Пошук";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioSelect.AutoSize = true;
+            this.radioSelect.Location = new System.Drawing.Point(19, 21);
+            this.radioSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSelect.Name = "radioSelect";
+            this.radioSelect.Size = new System.Drawing.Size(83, 24);
+            this.radioSelect.TabIndex = 0;
+            this.radioSelect.TabStop = true;
+            this.radioSelect.Text = "Пошук";
+            this.radioSelect.UseVisualStyleBackColor = true;
+            this.radioSelect.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // radioInsert
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(19, 58);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(120, 24);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Додавання";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioInsert.AutoSize = true;
+            this.radioInsert.Location = new System.Drawing.Point(19, 58);
+            this.radioInsert.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioInsert.Name = "radioInsert";
+            this.radioInsert.Size = new System.Drawing.Size(120, 24);
+            this.radioInsert.TabIndex = 1;
+            this.radioInsert.TabStop = true;
+            this.radioInsert.Text = "Додавання";
+            this.radioInsert.UseVisualStyleBackColor = true;
+            this.radioInsert.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
-            // radioButton3
+            // radioUpdate
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(19, 94);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(132, 24);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Редагування";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.radioUpdate.AutoSize = true;
+            this.radioUpdate.Location = new System.Drawing.Point(19, 94);
+            this.radioUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioUpdate.Name = "radioUpdate";
+            this.radioUpdate.Size = new System.Drawing.Size(132, 24);
+            this.radioUpdate.TabIndex = 2;
+            this.radioUpdate.TabStop = true;
+            this.radioUpdate.Text = "Редагування";
+            this.radioUpdate.UseVisualStyleBackColor = true;
+            this.radioUpdate.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
-            // radioButton4
+            // radioDelete
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(19, 131);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(120, 24);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Видалення";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            this.radioDelete.AutoSize = true;
+            this.radioDelete.Location = new System.Drawing.Point(19, 131);
+            this.radioDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioDelete.Name = "radioDelete";
+            this.radioDelete.Size = new System.Drawing.Size(120, 24);
+            this.radioDelete.TabIndex = 3;
+            this.radioDelete.TabStop = true;
+            this.radioDelete.Text = "Видалення";
+            this.radioDelete.UseVisualStyleBackColor = true;
+            this.radioDelete.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -306,10 +306,10 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.radioDelete);
+            this.Controls.Add(this.radioUpdate);
+            this.Controls.Add(this.radioInsert);
+            this.Controls.Add(this.radioSelect);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -326,10 +326,10 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioSelect;
+        private System.Windows.Forms.RadioButton radioInsert;
+        private System.Windows.Forms.RadioButton radioUpdate;
+        private System.Windows.Forms.RadioButton radioDelete;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Button button1;

@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
             comboBox1.SelectedIndex = -1;
             checkBox1.Checked = false;
             checkBox2.Checked = false;
-            radioButton1.Checked = true;
+            radioSelect.Checked = true;
             // type_IDTextBox.Text = "";
         }
         //static string login = "MANDRYKA\administartor";
@@ -135,10 +135,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            
-
-            if (radioButton2.Checked) //Insert 
+            if (radioInsert.Checked) //Insert 
             {
                 if (spell_for_check_all()) 
                 {
@@ -148,30 +145,45 @@ namespace WindowsFormsApp1
                 }
             }
 
-            if (radioButton4.Checked)// DELETE
+            if (radioDelete.Checked)// DELETE
             {
                 if (spell_for_check_all())
                 {
 
                     string cond1 = "true", cond2 = "true";
-                    if (checkBox1.Checked)
+                    if (game_IDTextBox.Text != "")
                     {
                         cond1 = $"game_id = {game_IDTextBox.Text}";
                     }
 
-                    if (checkBox2.Checked)
+                    if (comboBox1.SelectedIndex != -1)
                     {
-                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
+                        cond2 = $"GAME_TYPE.game_type_id = {((GameType)comboBox1.SelectedItem).id}";
                     }
-                    string query = "delete" +
-                                   " FROM GAME" +
-                                   $" WHERE {cond1} AND {cond2};";
+                    string query = "delete GAME " +
+                                   "FROM GAME " +
+                                   "INNER JOIN GAME_TYPE ON GAME.game_type_id = GAME_TYPE.game_type_id " +
+                                   $"WHERE {cond1} AND {cond2};";
+                    Console.WriteLine(query);
                     spell_for_mysql(query);
                     clear_fields();
                 }
             }
+
+            //if (radioUpdate.Checked)
+            //{
+            //    if (spell_for_check_all())
+            //    {
+                  
+            //        string query = "UPDATE game" +
+            //                        $"SET game_name = {} AND game_id={} AND game_type_id={}" +
+            //                        $"WHERE game_id={((GameType)comboBox1.SelectedItem).id};";
+            //        spell_for_mysql(query);
+            //        clear_fields();
+            //    }
+            //}
             
-            //if (radioButton1.Checked)// Search 
+            //if (radioSelect.Checked)// Search 
             {
                 if (spell_for_check_all())
                 {
@@ -184,7 +196,7 @@ namespace WindowsFormsApp1
 
                     if (checkBox2.Checked)
                     {
-                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
+                        cond2 = $"GAME_TYPE.game_type_id = {((GameType)comboBox1.SelectedItem).id}";
                     }
                     string query = "select game_id, game_name, game_description, game_type_name " +
                                     "FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id " +
@@ -263,36 +275,56 @@ namespace WindowsFormsApp1
             }
             return success;
         }
+
+
         private bool spell_for_check_is_not_null()
         {
             bool test = true;
-            if (radioButton1.Checked)//search
+            if (radioSelect.Checked)//search
             { 
-                errorProvider1.Clear();
-                if (checkBox2.Checked && comboBox1.Text == "")
-                {
-                    errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
-                    test = false;
-                }
+               
+                
                 if (checkBox1.Checked && game_IDTextBox.Text == "")
                 {
                     errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
                     test = false;
                 }
-                if (test)
+
+                if (checkBox2.Checked && comboBox1.Text == "")
                 {
-                    errorProvider1.Clear();
+                    errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
+                    test = false;
+                }
+
+            }
+            else if (radioInsert.Checked)
+            {
+                
+                if (game_IDTextBox.Text == "")
+                {
+                    errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
+                    test = false;
+                }
+
+                if (comboBox1.SelectedIndex == -1)
+                {
+                    errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
+                    test = false;
+                }
+
+            }
+            else if (radioUpdate.Checked)
+            {
+                if (game_IDTextBox.Text == "")
+                {
+                    errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
+                    test = false;
                 }
             }
-            else if (radioButton2.Checked)
+            else if (radioDelete.Checked) 
             {
-                if (true) { }
-                    
+                
             }
-            else if (radioButton3.Checked)
-            { }
-            else if (radioButton4.Checked) 
-            { }
             
            
             
@@ -343,17 +375,18 @@ namespace WindowsFormsApp1
         private bool spell_for_check_all() //дикий костыль с всеми проверками;
         {
             bool test = true;
-            if (radioButton1.Checked)
+            errorProvider1.Clear();
+            if (radioSelect.Checked)
             {
                 test = spell_for_check_is_not_null() &&
                 spell_for_check_id_is_element_int();
             }
-            else if (radioButton2.Checked)
+            else if (radioInsert.Checked)
             {
                 test = spell_for_check_is_not_null() &&
                 spell_for_check_id_is_element_int() && spell_for_check_id_is_element_presence();
             }
-            else if (radioButton4.Checked)
+            else if (radioDelete.Checked)
             {
                 test = spell_for_check_is_not_null() &&
                 spell_for_check_id_is_element_int();
