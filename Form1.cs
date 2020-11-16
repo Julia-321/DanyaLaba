@@ -56,6 +56,7 @@ namespace WindowsFormsApp1
             game_IDTextBox.Text = "";
             nameTextBox.Text = "";
             descriptionTextBox.Text = "";
+            comboBox1.SelectedIndex = -1;
             // type_IDTextBox.Text = "";
         }
         //static string login = "MANDRYKA\administartor";
@@ -157,7 +158,9 @@ namespace WindowsFormsApp1
             {
                 if (spell_for_check_all()) 
                 {
-                    spell_for_mysql_Insert($"{comboBox1.Text}");
+                    spell_for_mysql($"INSERT INTO GAME (game_id, game_name, game_description, game_type_ID) " +
+                            $"VALUES ({Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', {((GameType)comboBox1.SelectedItem).id});");
+
                 }
             }
 
@@ -174,7 +177,7 @@ namespace WindowsFormsApp1
 
                     if (checkBox2.Checked)
                     {
-                        cond2 = $"game_type_name = '{comboBox1.Text}'";
+                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
                     }
                     string query = "delete" +
                                    " FROM GAME" +
@@ -227,33 +230,7 @@ namespace WindowsFormsApp1
         {
 
         }
-        private void spell_for_mysql_Insert(string game_type_name)//insert_for_mysql
-        {
-            int check_game_type_id = 0;
-            conn_for_db.Open();
-            MySqlCommand cmd = conn_for_db.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = Convert.ToString($"select game_type_id FROM GAME_TYPE WHERE (game_type_name = '{game_type_name}');");
-            cmd.ExecuteScalar();
 
-            conn_for_db.Close();
-
-            DataTable dt = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            da.Fill(dt);
-            using (DataTableReader reader = dt.CreateDataReader())
-            {
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        check_game_type_id = Convert.ToInt32(reader[i]);
-                    }
-                }
-            }
-            Console.WriteLine( $"{ Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', { check_game_type_id} ");
-            spell_for_mysql($"Insert INTO GAME (game_id, game_name, game_description, game_type_ID) VALUES ({Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', {check_game_type_id});");
-        }
         //==============================================================================================
         //Отсеивание ошибок при вводе инфы в текстовые поля
         //==============================================================================================
