@@ -218,7 +218,9 @@ namespace WindowsFormsApp1
         // как изменить тип таблицы  ==> ALTER TABLE tablename MODIFY columnname INTEGER;
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form2 newForm = new Form2();
+            newForm.Show();
+            this.Hide();
         }
 
 

@@ -50,7 +50,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(17, 16);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(110, 21);
             this.radioButton1.TabIndex = 0;
@@ -62,7 +62,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(17, 46);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(110, 21);
             this.radioButton2.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(17, 75);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(110, 21);
             this.radioButton3.TabIndex = 2;
@@ -86,7 +86,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(17, 105);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(110, 21);
             this.radioButton4.TabIndex = 3;
@@ -169,6 +169,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "GAME";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // checkBox1
             // 
@@ -210,7 +211,7 @@
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
