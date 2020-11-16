@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.radioSelect = new System.Windows.Forms.RadioButton();
             this.radioInsert = new System.Windows.Forms.RadioButton();
             this.radioUpdate = new System.Windows.Forms.RadioButton();
@@ -48,21 +49,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.test_button = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.check_button = new System.Windows.Forms.Button();
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // radioSelect
             // 
             this.radioSelect.AutoSize = true;
-            this.radioSelect.Location = new System.Drawing.Point(19, 21);
+            this.radioSelect.Location = new System.Drawing.Point(21, 268);
             this.radioSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioSelect.Name = "radioSelect";
             this.radioSelect.Size = new System.Drawing.Size(83, 24);
@@ -75,7 +78,7 @@
             // radioInsert
             // 
             this.radioInsert.AutoSize = true;
-            this.radioInsert.Location = new System.Drawing.Point(19, 58);
+            this.radioInsert.Location = new System.Drawing.Point(21, 305);
             this.radioInsert.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioInsert.Name = "radioInsert";
             this.radioInsert.Size = new System.Drawing.Size(120, 24);
@@ -88,7 +91,7 @@
             // radioUpdate
             // 
             this.radioUpdate.AutoSize = true;
-            this.radioUpdate.Location = new System.Drawing.Point(19, 94);
+            this.radioUpdate.Location = new System.Drawing.Point(21, 341);
             this.radioUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioUpdate.Name = "radioUpdate";
             this.radioUpdate.Size = new System.Drawing.Size(132, 24);
@@ -101,7 +104,7 @@
             // radioDelete
             // 
             this.radioDelete.AutoSize = true;
-            this.radioDelete.Location = new System.Drawing.Point(19, 131);
+            this.radioDelete.Location = new System.Drawing.Point(21, 378);
             this.radioDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioDelete.Name = "radioDelete";
             this.radioDelete.Size = new System.Drawing.Size(120, 24);
@@ -114,7 +117,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(305, 131);
+            this.checkBox1.Location = new System.Drawing.Point(294, 326);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 24);
@@ -125,7 +128,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(474, 131);
+            this.checkBox2.Location = new System.Drawing.Point(463, 326);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(135, 24);
@@ -135,7 +138,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(19, 191);
+            this.button1.Location = new System.Drawing.Point(25, 522);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(207, 35);
@@ -146,7 +149,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(19, 238);
+            this.button2.Location = new System.Drawing.Point(867, 320);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(207, 35);
@@ -158,7 +161,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 354);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 601);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -168,7 +171,7 @@
             // 
             // game_IDTextBox
             // 
-            this.game_IDTextBox.Location = new System.Drawing.Point(19, 314);
+            this.game_IDTextBox.Location = new System.Drawing.Point(21, 456);
             this.game_IDTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.game_IDTextBox.Name = "game_IDTextBox";
             this.game_IDTextBox.Size = new System.Drawing.Size(150, 26);
@@ -177,7 +180,7 @@
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(179, 314);
+            this.nameTextBox.Location = new System.Drawing.Point(181, 456);
             this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(148, 26);
@@ -185,7 +188,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(338, 314);
+            this.descriptionTextBox.Location = new System.Drawing.Point(340, 456);
             this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(148, 26);
@@ -195,17 +198,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 282);
+            this.label1.Location = new System.Drawing.Point(21, 424);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 13;
             this.label1.Text = "game_id";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(176, 282);
+            this.label2.Location = new System.Drawing.Point(178, 424);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 20);
@@ -216,7 +220,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(333, 282);
+            this.label3.Location = new System.Drawing.Point(335, 424);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 20);
@@ -228,7 +232,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.ItemHeight = 20;
-            this.comboBox1.Location = new System.Drawing.Point(496, 314);
+            this.comboBox1.Location = new System.Drawing.Point(498, 456);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(165, 28);
@@ -238,7 +242,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(492, 282);
+            this.label5.Location = new System.Drawing.Point(494, 424);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 20);
@@ -248,12 +252,12 @@
             // 
             // test_button
             // 
-            this.test_button.Location = new System.Drawing.Point(683, 312);
+            this.test_button.Location = new System.Drawing.Point(250, 522);
             this.test_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.test_button.Name = "test_button";
-            this.test_button.Size = new System.Drawing.Size(154, 29);
+            this.test_button.Size = new System.Drawing.Size(220, 35);
             this.test_button.TabIndex = 19;
-            this.test_button.Text = "DISPLAY_GAME";
+            this.test_button.Text = "СКИНУТИ ФІЛЬТРИ";
             this.test_button.UseVisualStyleBackColor = true;
             this.test_button.Click += new System.EventHandler(this.test_button_Click);
             // 
@@ -262,17 +266,6 @@
             this.errorProvider1.BlinkRate = 0;
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
-            // 
-            // check_button
-            // 
-            this.check_button.Location = new System.Drawing.Point(740, 191);
-            this.check_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.check_button.Name = "check_button";
-            this.check_button.Size = new System.Drawing.Size(174, 29);
-            this.check_button.TabIndex = 20;
-            this.check_button.Text = "check_button";
-            this.check_button.UseVisualStyleBackColor = true;
-            this.check_button.Click += new System.EventHandler(this.check_button_Click);
             // 
             // errorProvider2
             // 
@@ -286,12 +279,34 @@
             // 
             this.errorProvider4.ContainerControl = this;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(309, 258);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(405, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(719, 91);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "КАЗИНО ВУЛКАН";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
-            this.Controls.Add(this.check_button);
+            this.ClientSize = new System.Drawing.Size(1200, 929);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.test_button);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox1);
@@ -319,6 +334,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,10 +361,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button test_button;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Button check_button;
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.ErrorProvider errorProvider3;
         private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -118,6 +118,7 @@ namespace WindowsFormsApp1
         {
             // TODO: This line of code loads data into the 'azart_companyDataSet.Game' table. You can move, or remove it, as needed.
             // this.gameTableAdapter.Fill(this.azart_companyDataSet.Game);
+            
             display_data();
             display_comobox();
         }
@@ -171,18 +172,21 @@ namespace WindowsFormsApp1
                 }
             }
 
-            //if (radioUpdate.Checked)
-            //{
-            //    if (spell_for_check_all())
-            //    {
-                  
-            //        string query = "UPDATE game" +
-            //                        $"SET game_name = {} AND game_id={} AND game_type_id={}" +
-            //                        $"WHERE game_id={((GameType)comboBox1.SelectedItem).id};";
-            //        spell_for_mysql(query);
-            //        clear_fields();
-            //    }
-            //}
+            if (radioUpdate.Checked)
+            {
+                if (spell_for_check_all())
+                {
+                    string name = (nameTextBox.Text == "" ? "game_name" : $"'{nameTextBox.Text}'");
+                    string descr = (descriptionTextBox.Text == "" ? "game_description" : $"'{descriptionTextBox.Text}'");
+                    string game_type_id = (comboBox1.SelectedIndex == -1 ? "game_type_id" : $"{((GameType)comboBox1.SelectedItem).id}");
+                    string query = "UPDATE GAME " +
+                                    $"SET game_name = {name}, game_description={descr}, game_type_id={game_type_id} " +
+                                    $"WHERE game_id={game_IDTextBox.Text};";
+                    Console.WriteLine(query);
+                    spell_for_mysql(query);
+                    clear_fields();
+                }
+            }
             
             //if (radioSelect.Checked)// Search 
             {
@@ -392,14 +396,10 @@ namespace WindowsFormsApp1
                 test = spell_for_check_is_not_null() &&
                 spell_for_check_id_is_element_int();
             }
-            //else if (radioButton3.Checked)
-            //{
-
-            //}
-            //else if (radioButton4.Checked) 
-            //{
-
-            //}
+            else if (radioUpdate.Checked)
+            {
+                test = spell_for_check_is_not_null() && spell_for_check_id_is_element_int();
+            }
             return test;
 
 
@@ -450,6 +450,16 @@ namespace WindowsFormsApp1
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
