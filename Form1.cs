@@ -16,6 +16,20 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        public class GameType
+        {
+            public int id;
+            public string name;
+            public GameType(int id, string name)
+            {
+                this.id = id;
+                this.name = name;
+            }
+            public override string ToString()
+            {
+                return this.name;
+            }
+        }
         //====================================================================
         //Mysql_comand_Type_search = $"select game_type_id FROM GAME_TYPE WHERE game_type_name = '{comboBox1.Text}';";
         //
@@ -52,14 +66,15 @@ namespace WindowsFormsApp1
             conn_for_db.Open();
             MySqlCommand cmd = conn_for_db.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "Select game_type_name from GAME_TYPE";
+            cmd.CommandText = "SELECT game_type_id, game_type_name " +
+                                "FROM GAME_TYPE";
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             da.Fill(dt);
             foreach (DataRow i in dt.Rows)
             {
-                comboBox1.Items.Add(i["game_type_name"].ToString());
+                comboBox1.Items.Add(new GameType(Convert.ToInt32(i["game_type_id"]), i["game_type_name"].ToString()));
             }
             conn_for_db.Close();
         }
@@ -129,7 +144,7 @@ namespace WindowsFormsApp1
 
                     if (checkBox2.Checked)
                     {
-                        cond2 = $"game_type_name = '{comboBox1.Text}'";
+                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
                     }
                     string query = "select game_id, game_name, game_description, game_type_name " +
                                     "FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id " +
