@@ -117,6 +117,7 @@ namespace WindowsFormsApp1
         {
             // TODO: This line of code loads data into the 'azart_companyDataSet.Game' table. You can move, or remove it, as needed.
             // this.gameTableAdapter.Fill(this.azart_companyDataSet.Game);
+            
             display_data();
             display_comobox();
         }
@@ -262,7 +263,7 @@ namespace WindowsFormsApp1
         {
             if (game_IDTextBox.Text == "")
                 return true;
-            int check_something_in_game_IDTextBox = 0;```````````````````````````````````
+            int check_something_in_game_IDTextBox = 0;
             bool success = false;
 
             success = Int32.TryParse(game_IDTextBox.Text, out check_something_in_game_IDTextBox);
@@ -448,6 +449,16 @@ namespace WindowsFormsApp1
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
