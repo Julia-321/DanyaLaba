@@ -28,20 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.game_type_id_textbox = new System.Windows.Forms.TextBox();
+            this.game_type_name_textbox = new System.Windows.Forms.TextBox();
+            this.game_type_description_textbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // radioButton1
@@ -111,26 +118,26 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "label1";
             // 
-            // textBox1
+            // game_type_id_textbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(26, 228);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 6;
+            this.game_type_id_textbox.Location = new System.Drawing.Point(26, 228);
+            this.game_type_id_textbox.Name = "game_type_id_textbox";
+            this.game_type_id_textbox.Size = new System.Drawing.Size(100, 22);
+            this.game_type_id_textbox.TabIndex = 6;
             // 
-            // textBox2
+            // game_type_name_textbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(132, 228);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 7;
+            this.game_type_name_textbox.Location = new System.Drawing.Point(132, 228);
+            this.game_type_name_textbox.Name = "game_type_name_textbox";
+            this.game_type_name_textbox.Size = new System.Drawing.Size(100, 22);
+            this.game_type_name_textbox.TabIndex = 7;
             // 
-            // textBox3
+            // game_type_description_textbox
             // 
-            this.textBox3.Location = new System.Drawing.Point(238, 228);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 8;
+            this.game_type_description_textbox.Location = new System.Drawing.Point(238, 228);
+            this.game_type_description_textbox.Name = "game_type_description_textbox";
+            this.game_type_description_textbox.Size = new System.Drawing.Size(100, 22);
+            this.game_type_description_textbox.TabIndex = 8;
             // 
             // label2
             // 
@@ -170,6 +177,18 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,9 +198,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.game_type_description_textbox);
+            this.Controls.Add(this.game_type_name_textbox);
+            this.Controls.Add(this.game_type_id_textbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.radioButton4);
@@ -193,6 +212,9 @@
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,12 +228,15 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox game_type_id_textbox;
+        private System.Windows.Forms.TextBox game_type_name_textbox;
+        private System.Windows.Forms.TextBox game_type_description_textbox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
     }
 }
