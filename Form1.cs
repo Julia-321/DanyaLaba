@@ -58,6 +58,9 @@ namespace WindowsFormsApp1
             nameTextBox.Text = "";
             descriptionTextBox.Text = "";
             comboBox1.SelectedIndex = -1;
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            radioButton1.Checked = true;
             // type_IDTextBox.Text = "";
         }
         //static string login = "MANDRYKA\administartor";
@@ -96,7 +99,7 @@ namespace WindowsFormsApp1
 
             conn_for_db.Close();
 
-            clear_fields();
+            //clear_fields();
         }
         public void spell_for_mysql(string sql_request) // delete_update_insert 
         {
@@ -133,27 +136,7 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (radioButton1.Checked)// Search 
-            {
-                if (spell_for_check_all())
-                {
-
-                    string cond1 = "true", cond2 = "true";
-                    if (checkBox1.Checked)
-                    {
-                        cond1 = $"game_id = {game_IDTextBox.Text}";
-                    }
-
-                    if (checkBox2.Checked)
-                    {
-                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
-                    }
-                    string query = "select game_id, game_name, game_description, game_type_name " +
-                                    "FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id " +
-                                    $"WHERE {cond1} AND {cond2};";
-                    spell_for_mysql_search(query);
-                }
-            }
+            
 
             if (radioButton2.Checked) //Insert 
             {
@@ -161,7 +144,7 @@ namespace WindowsFormsApp1
                 {
                     spell_for_mysql($"INSERT INTO GAME (game_id, game_name, game_description, game_type_ID) " +
                             $"VALUES ({Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', {((GameType)comboBox1.SelectedItem).id});");
-
+                    clear_fields();
                 }
             }
 
@@ -184,6 +167,29 @@ namespace WindowsFormsApp1
                                    " FROM GAME" +
                                    $" WHERE {cond1} AND {cond2};";
                     spell_for_mysql(query);
+                    clear_fields();
+                }
+            }
+            
+            //if (radioButton1.Checked)// Search 
+            {
+                if (spell_for_check_all())
+                {
+
+                    string cond1 = "true", cond2 = "true";
+                    if (checkBox1.Checked)
+                    {
+                        cond1 = $"game_id = {game_IDTextBox.Text}";
+                    }
+
+                    if (checkBox2.Checked)
+                    {
+                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
+                    }
+                    string query = "select game_id, game_name, game_description, game_type_name " +
+                                    "FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id " +
+                                    $"WHERE {cond1} AND {cond2};";
+                    spell_for_mysql_search(query);
                 }
             }
             /*
@@ -207,7 +213,7 @@ namespace WindowsFormsApp1
                             }
                         }
                       */
-   
+
         }
         // как изменить тип таблицы  ==> ALTER TABLE tablename MODIFY columnname INTEGER;
         private void button2_Click(object sender, EventArgs e)
@@ -377,7 +383,7 @@ namespace WindowsFormsApp1
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-            clear_fields();
+            //clear_fields();
         }
         private void test_button_Click(object sender, EventArgs e)
         {
