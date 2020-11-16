@@ -28,5 +28,25 @@ namespace WindowsFormsApp1
             newForm.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked) 
+            {
+            
+            }
+            else if (radioButton2.Checked)
+            {
+
+            }
+            else if (radioButton3.Checked)
+            {
+
+            }
+            else if (radioButton4.Checked)
+            {
+
+            }
+        }
     }
 }

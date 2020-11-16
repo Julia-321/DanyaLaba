@@ -262,7 +262,7 @@ namespace WindowsFormsApp1
         {
             if (game_IDTextBox.Text == "")
                 return true;
-            int check_something_in_game_IDTextBox = 0;
+            int check_something_in_game_IDTextBox = 0;```````````````````````````````````
             bool success = false;
 
             success = Int32.TryParse(game_IDTextBox.Text, out check_something_in_game_IDTextBox);
