@@ -117,34 +117,29 @@ namespace WindowsFormsApp1
 
             if (radioButton1.Checked)// Search 
             {
-                if (checkBox1.Checked && (checkBox2.Checked == false))
+                if (spell_for_check_all())
                 {
-                    if (spell_for_check_id_is_element_int()) 
+
+                    string cond1 = "true", cond2 = "true";
+                    if (checkBox1.Checked) 
                     {
-                        spell_for_mysql_search($"select  FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)}");
+                        cond1 = $"game_id = {game_IDTextBox.Text}";
                     }
-                    //пошук за ID работает
-                }
-                else if (checkBox1.Checked == false && checkBox2.Checked && comboBox1.Text != "")
-                {
-                    spell_for_mysql_search($"select game_id, game_name, game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME_TYPE.game_type_name = '{comboBox1.Text}';");
-                    //пошук за типом гри
-                }
-                else if (checkBox1.Checked && checkBox2.Checked && comboBox1.Text != "")
-                {
-                    spell_for_mysql_search($"select game_id, game_name, game_description, game_type_name FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)} AND GAME_TYPE.game_type_name = '{comboBox1.Text}';");
-                    //пошук за ID та Типом 
-                }
-                else if (checkBox1.Checked == false && checkBox2.Checked == false) 
-                {
-                    spell_for_mysql_search($"SELECT game_id, game_name, game_description, game_type_id, game_type_name, game_type_description FROM GAME INNER JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id;");
-                    //пошук без id без Type
+
+                    if (checkBox2.Checked)
+                    {
+                        cond2 = $"game_type_name = '{comboBox1.Text}'";
+                    }
+                    string query = "select game_id, game_name, game_description, game_type_name " +
+                                    "FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id " +
+                                    $"WHERE {cond1} AND {cond2};";
+                    spell_for_mysql_search(query);
                 }
             }
 
             if (radioButton2.Checked) //Insert 
             {
-                if (spell_for_CHECK_ID()) 
+                if (spell_for_check_all()) 
                 {
                   spell_for_mysql_Insert(comboBox1.Text);
                 }
@@ -174,7 +169,7 @@ namespace WindowsFormsApp1
             {
                 if (checkBox1.Checked && (!checkBox2.Checked))
                 {
-                    if (spell_for_CHECK_ID())
+                    if (spell_for_check_all())
                     {
                         spell_for_mysql($"delete from GAME where game_id = {game_IDTextBox.Text};");
                         display_data();
@@ -187,7 +182,7 @@ namespace WindowsFormsApp1
                 }
                 else if (checkBox1.Checked && checkBox2.Checked)
                 {
-                    if (spell_for_CHECK_ID())
+                    if (spell_for_check_all())
                     {
                         spell_for_mysql($"delete from GAME where (game_id = {game_IDTextBox.Text}) AND (game_type = {comboBox1.Text});");
                         display_data();
@@ -249,8 +244,11 @@ namespace WindowsFormsApp1
         //==============================================================================================
         private bool spell_for_check_id_is_element_int()
         {
+            if (game_IDTextBox.Text == "")
+                return true;
             int check_something_in_game_IDTextBox = 0;
             bool success = false;
+
             success = Int32.TryParse(game_IDTextBox.Text, out check_something_in_game_IDTextBox);
             if (!success)
             {
@@ -269,35 +267,31 @@ namespace WindowsFormsApp1
             bool test = true;
             if (radioButton1.Checked)//search
             {
-                if (checkBox1.Checked && !checkBox2.Checked) 
-                {
-                    if (game_IDTextBox.Text == "")
-                    {
-                        errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
-                        test = false;
-                    }
-                    else
-                    {
-                        errorProvider1.Clear();
-                        test = true;
-                    }
-                }
-                else if (!checkBox1.Checked && checkBox2.Checked)
-                {
-                    if (comboBox1.Text == "")
+                    errorProvider1.Clear();
+                    if (checkBox2.Checked && comboBox1.Text == "")
                     {
                         errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
                         test = false;
                     }
-                    else
+                    
+                    if (checkBox1.Checked && game_IDTextBox.Text == "")
+                    {
+                        errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
+                        test = false;
+                    }
+                   
+
+
+                    if (test)
                     {
                         errorProvider1.Clear();
-                        test = true;
                     }
-                }
             }
             else if (radioButton2.Checked)
-            { }
+            {
+                if (true) { }
+                    
+            }
             else if (radioButton3.Checked)
             { }
             else if (radioButton4.Checked) 
@@ -339,6 +333,10 @@ namespace WindowsFormsApp1
         }//проверка не пустой ли Textbox
         private bool spell_for_check_id_is_element_presence()
         {
+            if (game_IDTextBox.Text == "")
+                return true;
+
+
             bool test = true;
             conn_for_db.Open();
             MySqlCommand cmd = conn_for_db.CreateCommand();
@@ -375,59 +373,32 @@ namespace WindowsFormsApp1
             return test;
         }//проверка на наличие введеного ID в Texbox для ID
 
-        private bool spell_for_CHECK_ID() //дикий костыль с всеми проверками;
+        private bool spell_for_check_all() //дикий костыль с всеми проверками;
         {
             bool test = true;
             if (radioButton1.Checked)
             {
-                if (checkBox1.Checked && !checkBox2.Checked)
-                {
-                    if (spell_for_check_is_not_null()) 
-                    {
-                        if (spell_for_check_id_is_element_int())
-                        {
-                            spell_for_mysql_search($"select  FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id where GAME.game_id = {Convert.ToInt32(game_IDTextBox.Text)}");
-                        }
-                    }
-                    
-                    //пошук за ID работает
-                }
+                test = spell_for_check_is_not_null() &&
+                spell_for_check_id_is_element_int();
             }
             else if (radioButton2.Checked)
             {
+                test = spell_for_check_is_not_null() &&
+                spell_for_check_id_is_element_int() && spell_for_check_id_is_element_presence();
+            }
+            //else if (radioButton3.Checked)
+            //{
 
-            }
-            else if (radioButton3.Checked)
-            {
+            //}
+            //else if (radioButton4.Checked) 
+            //{
 
-            }
-            else if (radioButton4.Checked) 
-            {
-            
-            }
-            if (spell_for_check_is_not_null())
-            { 
-                if (spell_for_check_id_is_element_int())
-                {
-                    if (spell_for_check_id_is_element_presence())
-                    {
-                        test = true;
-                    }
-                    else 
-                    {
-                        test = false;
-                    }
-                }
-                else 
-                {
-                    test = false;
-                }
-            }
-            else 
-            {
-                test = false;
-            }
+            //}
             return test;
+
+
+
+            
         }
 
         public void spell_for_mysql_search(object command)  // подключаешся к SQL и выполняешь действие которые тебе нужны (по сути переменная  СOMMAND , это код на SQL)
