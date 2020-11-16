@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            spell_for_mysql_search("SELECT * from GAME_TYPE;");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,28 +35,33 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioSelect.Checked) 
-            {
-                spell_for_mysql_search("Select * from GAME_TYPE;");
-            }
-            else if (radioInsert.Checked)
+            if (radioInsert.Checked)
             {
                 if (spell_for_check_is_not_null() && spell_for_check_id_is_element_int() && spell_for_check_id_is_element_presence())
                 {
-                    spell_for_mysql($"Insert into GAME_TYPE game_type_id, game_type_name, game_type_description VALUES ({game_type_id_textbox.Text}, {game_type_name_textbox.Text}, {game_type_description_textbox.Text})");       
+                    spell_for_mysql($"Insert into GAME_TYPE " +
+                        $"(game_type_id, game_type_name, game_type_description)" +
+                        $"VALUES ({game_type_id_textbox.Text}, '{game_type_name_textbox.Text}', '{game_type_description_textbox.Text}')");       
                 }
             }
-            else if (radioUpdate.Checked)
+            if (radioUpdate.Checked)
             {
                 if (spell_for_check_is_not_null() && spell_for_check_id_is_element_int()) 
                 {
-                    spell_for_mysql($"Update");
+                    spell_for_mysql($"UPDATE GAME_TYPE " +
+                                    $"SET game_type_name='{game_type_name_textbox.Text}', game_type_description='{game_type_description_textbox.Text}' " +
+                                    $"WHERE game_type_id={game_type_id_textbox.Text}");
                 }
             }
-            else if (radioDelete.Checked)
+            if (radioDelete.Checked)
             {
-
             }
+
+            //if (radioSelect.Checked)
+            {
+                spell_for_mysql_search("Select * from GAME_TYPE;");
+            }
+
         }
         private bool spell_for_check_is_not_null()
         {
@@ -76,6 +81,25 @@ namespace WindowsFormsApp1
                 }
             }
             else if (radioUpdate.Checked)
+            {
+                if (game_type_id_textbox.Text == "")
+                {
+                    errorProvider1.SetError(game_type_id_textbox, "game_type_id_textbox не может быть пустым полем");
+                    test = false;
+                }
+                if (game_type_name_textbox.Text == "")
+                {
+                    errorProvider2.SetError(game_type_name_textbox, "game_type_name не может быть пустым полем");
+                    test = false;
+                }
+                if (game_type_description_textbox.Text == "")
+                {
+                    errorProvider3.SetError(game_type_description_textbox, "game_type_description_textbox не может быть пустым полем");
+                    test = false;
+                }
+
+            }
+            if (radioInsert.Checked)
             {
                 if (game_type_id_textbox.Text == "")
                 {
