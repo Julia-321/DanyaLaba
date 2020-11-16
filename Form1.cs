@@ -87,7 +87,8 @@ namespace WindowsFormsApp1
             conn_for_db.Open();
 
             MySqlCommand command = new MySqlCommand(sql_request, conn_for_db);
-            command.ExecuteNonQuery();
+            int rows_num = command.ExecuteNonQuery();
+            MessageBox.Show($"{rows_num} рядків було додано/змінено/видалено");
 
             conn_for_db.Close();
         }
@@ -121,7 +122,7 @@ namespace WindowsFormsApp1
                 {
 
                     string cond1 = "true", cond2 = "true";
-                    if (checkBox1.Checked) 
+                    if (checkBox1.Checked)
                     {
                         cond1 = $"game_id = {game_IDTextBox.Text}";
                     }
@@ -141,7 +142,29 @@ namespace WindowsFormsApp1
             {
                 if (spell_for_check_all()) 
                 {
-                  spell_for_mysql_Insert(comboBox1.Text);
+                    spell_for_mysql_Insert($"{comboBox1.Text}");
+                }
+            }
+
+            if (radioButton4.Checked)// DELETE
+            {
+                if (spell_for_check_all())
+                {
+
+                    string cond1 = "true", cond2 = "true";
+                    if (checkBox1.Checked)
+                    {
+                        cond1 = $"game_id = {game_IDTextBox.Text}";
+                    }
+
+                    if (checkBox2.Checked)
+                    {
+                        cond2 = $"game_type_name = '{comboBox1.Text}'";
+                    }
+                    string query = "delete" +
+                                   " FROM GAME" +
+                                   $" WHERE {cond1} AND {cond2};";
+                    spell_for_mysql(query);
                 }
             }
             /*
@@ -165,31 +188,7 @@ namespace WindowsFormsApp1
                             }
                         }
                       */
-            if (radioButton4.Checked) //Delete
-            {
-                if (checkBox1.Checked && (!checkBox2.Checked))
-                {
-                    if (spell_for_check_all())
-                    {
-                        spell_for_mysql($"delete from GAME where game_id = {game_IDTextBox.Text};");
-                        display_data();
-                    }
-                }
-                else if (!checkBox1.Checked && checkBox2.Checked && comboBox1.Text != "")
-                {
-                    spell_for_mysql($"delete from GAME where game_type = {comboBox1.Text};");
-                    display_data();
-                }
-                else if (checkBox1.Checked && checkBox2.Checked)
-                {
-                    if (spell_for_check_all())
-                    {
-                        spell_for_mysql($"delete from GAME where (game_id = {game_IDTextBox.Text}) AND (game_type = {comboBox1.Text});");
-                        display_data();
-                    }
-                       
-                }
-            }
+   
         }
         // как изменить тип таблицы  ==> ALTER TABLE tablename MODIFY columnname INTEGER;
         private void button2_Click(object sender, EventArgs e)
@@ -237,6 +236,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
+            Console.WriteLine( $"{ Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', { check_game_type_id} ");
             spell_for_mysql($"Insert INTO GAME (game_id, game_name, game_description, game_type_ID) VALUES ({Convert.ToInt32(game_IDTextBox.Text)}, '{nameTextBox.Text}', '{descriptionTextBox.Text}', {check_game_type_id});");
         }
         //==============================================================================================
@@ -266,26 +266,22 @@ namespace WindowsFormsApp1
         {
             bool test = true;
             if (radioButton1.Checked)//search
-            {
+            { 
+                errorProvider1.Clear();
+                if (checkBox2.Checked && comboBox1.Text == "")
+                {
+                    errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
+                    test = false;
+                }
+                if (checkBox1.Checked && game_IDTextBox.Text == "")
+                {
+                    errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
+                    test = false;
+                }
+                if (test)
+                {
                     errorProvider1.Clear();
-                    if (checkBox2.Checked && comboBox1.Text == "")
-                    {
-                        errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
-                        test = false;
-                    }
-                    
-                    if (checkBox1.Checked && game_IDTextBox.Text == "")
-                    {
-                        errorProvider1.SetError(game_IDTextBox, "game_id не может быть пустым полем");
-                        test = false;
-                    }
-                   
-
-
-                    if (test)
-                    {
-                        errorProvider1.Clear();
-                    }
+                }
             }
             else if (radioButton2.Checked)
             {
@@ -297,38 +293,8 @@ namespace WindowsFormsApp1
             else if (radioButton4.Checked) 
             { }
             
-            else 
-            {
-                
-
-                if (nameTextBox.Text == "")
-                {
-                    errorProvider2.SetError(nameTextBox, "game_name не может быть пустым полем");
-                    test = false;
-                }
-                else
-                {
-                    errorProvider2.Clear();
-                    test = true;
-                }
-
-                if (descriptionTextBox.Text == "")
-                {
-                    errorProvider3.SetError(descriptionTextBox, "game_description не может быть пустым полем");
-                    test = false;
-                }
-                else
-                {
-                    errorProvider3.Clear();
-                    test = true;
-                }
-
-                if (comboBox1.Text == "")
-                {
-                    errorProvider1.SetError(comboBox1, "game_type_name не может быть пустым полем");
-                    test = false;
-                }
-            }
+           
+            
             return test;
         }//проверка не пустой ли Textbox
         private bool spell_for_check_id_is_element_presence()
@@ -385,6 +351,11 @@ namespace WindowsFormsApp1
             {
                 test = spell_for_check_is_not_null() &&
                 spell_for_check_id_is_element_int() && spell_for_check_id_is_element_presence();
+            }
+            else if (radioButton4.Checked)
+            {
+                test = spell_for_check_is_not_null() &&
+                spell_for_check_id_is_element_int();
             }
             //else if (radioButton3.Checked)
             //{
