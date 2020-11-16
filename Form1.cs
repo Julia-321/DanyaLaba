@@ -135,9 +135,6 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            
-
             if (radioInsert.Checked) //Insert 
             {
                 if (spell_for_check_all()) 
@@ -154,22 +151,37 @@ namespace WindowsFormsApp1
                 {
 
                     string cond1 = "true", cond2 = "true";
-                    //if (checkBox1.Checked)
+                    if (game_IDTextBox.Text != "")
                     {
                         cond1 = $"game_id = {game_IDTextBox.Text}";
                     }
 
-                    if (checkBox2.Checked)
+                    if (comboBox1.SelectedIndex != -1)
                     {
-                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
+                        cond2 = $"GAME_TYPE.game_type_id = {((GameType)comboBox1.SelectedItem).id}";
                     }
-                    string query = "delete" +
-                                   " FROM GAME" +
-                                   $" WHERE {cond1} AND {cond2};";
+                    string query = "delete GAME " +
+                                   "FROM GAME " +
+                                   "INNER JOIN GAME_TYPE ON GAME.game_type_id = GAME_TYPE.game_type_id " +
+                                   $"WHERE {cond1} AND {cond2};";
+                    Console.WriteLine(query);
                     spell_for_mysql(query);
                     clear_fields();
                 }
             }
+
+            //if (radioUpdate.Checked)
+            //{
+            //    if (spell_for_check_all())
+            //    {
+                  
+            //        string query = "UPDATE game" +
+            //                        $"SET game_name = {} AND game_id={} AND game_type_id={}" +
+            //                        $"WHERE game_id={((GameType)comboBox1.SelectedItem).id};";
+            //        spell_for_mysql(query);
+            //        clear_fields();
+            //    }
+            //}
             
             //if (radioSelect.Checked)// Search 
             {
@@ -184,7 +196,7 @@ namespace WindowsFormsApp1
 
                     if (checkBox2.Checked)
                     {
-                        cond2 = $"GAME_TYPE.game_type_id = '{((GameType)comboBox1.SelectedItem).id}'";
+                        cond2 = $"GAME_TYPE.game_type_id = {((GameType)comboBox1.SelectedItem).id}";
                     }
                     string query = "select game_id, game_name, game_description, game_type_name " +
                                     "FROM GAME LEFT JOIN GAME_TYPE ON GAME.game_type_ID = GAME_TYPE.game_type_id " +
