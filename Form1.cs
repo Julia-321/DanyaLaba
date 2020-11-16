@@ -352,7 +352,7 @@ namespace WindowsFormsApp1
                 errorProvider1.Clear();
             }
             return test;
-        }//проверка на наличие введеного ID в Texbox для ID
+        }//провер+ка на наличие введеного ID в Texbox для ID
 
         private bool spell_for_check_all() //дикий костыль с всеми проверками;
         {
